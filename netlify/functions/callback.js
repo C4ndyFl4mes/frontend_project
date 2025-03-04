@@ -15,7 +15,7 @@ const oauth2 = new AuthorizationCode({
 
 exports.handler = async (event, context) => {
     const { code } = event.queryStringParameters;
-    const redirectUri = 'https://din-webbplats.netlify.app/callback';
+    const redirectUri = 'https://fr0ntendpr0ject.netlify.app/callback';
 
     try {
         const tokenParams = {
