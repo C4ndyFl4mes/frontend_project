@@ -39,7 +39,7 @@ async function getAnimeTrailer(animeTitle) {
     const animeId = searchData.results[0].id; // Hämta första resultatets ID
 
     // 🔹 2. Hämta trailers från TMDb
-    const videosUrl = `https://api.themoviedb.org/3/tv/${animeId}/videos?api_key=${TMDB_API_KEY}`;
+    const videosUrl = `https://api.themoviedb.org/3/tv/${animeId}/videos?api_key=${process.env.THEMOVIEDB_KEY}`;
     const videosResponse = await fetch(videosUrl);
     const videosData = await videosResponse.json();
 
