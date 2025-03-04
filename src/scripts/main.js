@@ -12,7 +12,7 @@ async function fetchAccessToken() {
     const data = await response.json();
 
     // Returnera access token
-    return data.access_token;
+    return data.body;
 }
 
 // Funktion för att spela upp musik via Spotify Web Playback SDK
