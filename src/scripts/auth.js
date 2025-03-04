@@ -3,21 +3,21 @@ document.getElementById('login-button').addEventListener('click', () => {
     window.location.href = '/.netlify/functions/login'; // Detta anropar login.js
 });
 
-// window.onSpotifyWebPlaybackSDKReady = () => {
-//     // Hämta access token.
-//     fetchAccessToken().then(token => {
-//         if(!token) {
-//             console.log("No token available.");
-//             return;
-//         } else {
-//             // console.log("Token available: " + token);
-//             sessionStorage.setItem("usertoken", JSON.stringify(token));
-//         }
+window.onSpotifyWebPlaybackSDKReady = () => {
+    // Hämta access token.
+    fetchToken().then(token => {
+        if(!token) {
+            console.log("No token available.");
+            return;
+        } else {
+            console.log("Token available: " + token);
+            sessionStorage.setItem("usertoken", JSON.stringify(token));
+        }
         
-//         // getSpotifyPlayer(token);
+        // getSpotifyPlayer(token);
 
-//     });
-// }
+    });
+}
 
 // // Funktion för att hämta access token från callback
 // async function fetchAccessToken() {
@@ -48,12 +48,13 @@ document.getElementById('login-button').addEventListener('click', () => {
 //     player.connect();
 // }
 
-window.onload = async () => {
+async function fetchToken() {
     try {
         const response = await fetch('/.netlify/functions/callback');
         const data = await response.json();
 
         sessionStorage.setItem("usertoken", JSON.stringify(data.access_token));
+        return data.access_token;
     } catch(error) {
         console.error(error);
     }
