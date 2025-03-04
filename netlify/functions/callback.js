@@ -25,7 +25,7 @@ exports.handler = async (event, context) => {
         };
         // Hämta access token från Spotify
         const accessToken = await oauth2.getToken(tokenParams);
-        sessionStorage.setItem("usertoken", JSON.stringify(accessToken.token.access_token));
+        
         // Skicka tillbaka token till frontend
         return {
             statusCode: 200,

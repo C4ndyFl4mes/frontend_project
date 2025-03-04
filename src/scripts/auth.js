@@ -21,7 +21,7 @@ async function fetchAccessToken() {
     // Hämta access token från Netlify function (callback.js)
     const response = await fetch('/.netlify/functions/callback');
     const data = await response.json();
-
+    sessionStorage.setItem("usertoken", JSON.stringify(data.access_token));
     // Returnera access token
     return data.access_token;
 }
