@@ -1,3 +1,10 @@
+window.onSpotifyWebPlaybackSDKReady = () => {
+    // Hämta access token och spela upp musik
+    fetchAccessToken().then(token => {
+        getSpotifyPlayer(token);
+    });
+}
+
 // Funktion för att hämta access token från callback
 async function fetchAccessToken() {
     // Hämta access token från Netlify function (callback.js)
@@ -27,7 +34,3 @@ async function getSpotifyPlayer(token) {
     player.connect();
 }
 
-// Hämta access token och spela upp musik
-fetchAccessToken().then(token => {
-    getSpotifyPlayer(token);
-});
