@@ -22,7 +22,7 @@ exports.handler = async (event, context) => {
             code,
             redirect_uri: redirectUri,
         };
-
+        console.log("Received code: ", code);
         // Hämta access token från Spotify
         const accessToken = await oauth2.getToken(tokenParams);
 
