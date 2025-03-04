@@ -15,9 +15,51 @@ async function playTrack() {
         <h3>${track.name} - ${track.artists[0].name}</h3>
         <iframe src="https://open.spotify.com/embed/track/${track.id}" width="300" height="80" frameborder="0"></iframe>
     `;
+        // 🔹 Exempel: Hämta trailer för "Naruto"
+        getAnimeTrailer("Naruto");
     } catch (error) {
         console.error(error);
     }
 
 
 }
+
+
+async function getAnimeTrailer(animeTitle) {
+    // 🔹 1. Hämta anime-ID från TMDb
+    const searchUrl = `https://api.themoviedb.org/3/search/tv?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(animeTitle)}`;
+    const searchResponse = await fetch(searchUrl);
+    const searchData = await searchResponse.json();
+
+    if (searchData.results.length === 0) {
+        console.log("Ingen trailer hittades!");
+        return;
+    }
+
+    const animeId = searchData.results[0].id; // Hämta första resultatets ID
+
+    // 🔹 2. Hämta trailers från TMDb
+    const videosUrl = `https://api.themoviedb.org/3/tv/${animeId}/videos?api_key=${TMDB_API_KEY}`;
+    const videosResponse = await fetch(videosUrl);
+    const videosData = await videosResponse.json();
+
+    // 🔹 3. Filtrera fram YouTube-trailers
+    const trailers = videosData.results.filter(video => video.site === "YouTube" && video.type === "Trailer");
+
+    if (trailers.length === 0) {
+        console.log("Ingen YouTube-trailer hittades!");
+        return;
+    }
+
+    const youtubeId = trailers[0].key; // Första trailern
+
+    // 🔹 4. Visa trailern på sidan
+    document.getElementById("trailerContainer").innerHTML = `
+        <h3>Trailer för ${animeTitle}</h3>
+        <iframe width="560" height="315" 
+            src="https://www.youtube.com/embed/${youtubeId}" 
+            frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+        </iframe>
+    `;
+}
+
