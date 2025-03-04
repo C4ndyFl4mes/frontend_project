@@ -27,7 +27,7 @@ async function playTrack() {
 
 async function getAnimeTrailer(animeTitle) {
     // 🔹 1. Hämta anime-ID från TMDb
-    const searchUrl = `https://api.themoviedb.org/3/search/tv?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(animeTitle)}`;
+    const searchUrl = `https://api.themoviedb.org/3/search/tv?api_key=${process.env.THEMOVIEDB_KEY}&query=${encodeURIComponent(animeTitle)}`;
     const searchResponse = await fetch(searchUrl);
     const searchData = await searchResponse.json();
 
