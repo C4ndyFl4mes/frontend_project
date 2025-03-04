@@ -10,7 +10,7 @@ window.onSpotifyWebPlaybackSDKReady = () => {
             console.log("No token available.");
             return;
         }
-        sessionStorage.setItem("usertoken", JSON.stringify(token));
+        
         getSpotifyPlayer(token);
 
     });
