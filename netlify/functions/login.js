@@ -14,7 +14,7 @@ const oauth2 = new AuthorizationCode({
 });
 
 exports.handler = async (event, context) => {
-  const redirectUri = 'https://fr0ntendpr0ject.netlify.app/';
+  const redirectUri = 'https://fr0ntendpr0ject.netlify.app/index';
   const authorizationUri = oauth2.authorizeURL({
     redirect_uri: redirectUri,
     scope: 'user-library-read user-read-playback-state user-read-currently-playing streaming',
