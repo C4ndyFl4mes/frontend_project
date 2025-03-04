@@ -17,6 +17,7 @@
   },
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "dependencies": {
-    "simple-oauth2": "^5.1.0"
+    "simple-oauth2": "^5.1.0",
+    "svgo": "^3.3.2"
   }
 }
