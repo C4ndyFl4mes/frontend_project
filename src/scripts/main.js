@@ -1,7 +1,17 @@
+document.getElementById('login-button').addEventListener('click', () => {
+    // Skicka användaren till din Netlify function som hanterar Spotify-login
+    window.location.href = '/.netlify/functions/login'; // Detta anropar login.js
+});
+
 window.onSpotifyWebPlaybackSDKReady = () => {
     // Hämta access token och spela upp musik
     fetchAccessToken().then(token => {
+        if(!token) {
+            console.log("No token available.");
+            return;
+        }
         getSpotifyPlayer(token);
+
     });
 }
 
@@ -12,7 +22,7 @@ async function fetchAccessToken() {
     const data = await response.json();
 
     // Returnera access token
-    return data.body;
+    return data.access_token;
 }
 
 // Funktion för att spela upp musik via Spotify Web Playback SDK
