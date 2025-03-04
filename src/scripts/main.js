@@ -8,7 +8,7 @@ window.onSpotifyWebPlaybackSDKReady = () => {
 // Funktion för att hämta access token från callback
 async function fetchAccessToken() {
     // Hämta access token från Netlify function (callback.js)
-    const response = await fetch('/.netlify/functions/callback');
+    const response = await fetch('../../netlify/functions/callback');
     const data = await response.json();
 
     // Returnera access token
