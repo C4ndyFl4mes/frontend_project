@@ -10,3 +10,12 @@ main {
 
     @extend %main-typography;
 }
+.auth {
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    
+    label {
+        align-self: center;
+    }
+}
